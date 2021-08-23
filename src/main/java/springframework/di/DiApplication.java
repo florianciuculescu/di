@@ -36,7 +36,7 @@ public class DiApplication {
         System.out.println("------------- Constructor");
 
         ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) context.getBean("constructorInjectedController");
-        System.out.println(setterInjectedController.getGreeting());
+        System.out.println(constructorInjectedController.getGreeting());
     }
 
 }

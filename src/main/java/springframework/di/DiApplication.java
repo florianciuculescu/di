@@ -9,6 +9,8 @@ import springframework.di.controllers.MyController;
 import springframework.di.controllers.PetController;
 import springframework.di.controllers.PropertyInjectedController;
 import springframework.di.controllers.SetterInjectedController;
+import springframework.di.services.PrototypeBean;
+import springframework.di.services.SingletonBean;
 
 @SpringBootApplication
 public class DiApplication {
@@ -44,6 +46,18 @@ public class DiApplication {
 
         ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) context.getBean("constructorInjectedController");
         System.out.println(constructorInjectedController.getGreeting());
+
+        System.out.println("----- Bean Scopes ----------");
+
+        SingletonBean singletonBean1 = context.getBean(SingletonBean.class);
+        System.out.println(singletonBean1.getMyScope());
+        SingletonBean singletonBean2 = context.getBean(SingletonBean.class);
+        System.out.println(singletonBean2.getMyScope());
+
+        PrototypeBean prototypeBean1 = context.getBean(PrototypeBean.class);
+        System.out.println(prototypeBean1.getMyScope());
+        PrototypeBean prototypeBean2 = context.getBean(PrototypeBean.class);
+        System.out.println(prototypeBean2.getMyScope());
     }
 
 }

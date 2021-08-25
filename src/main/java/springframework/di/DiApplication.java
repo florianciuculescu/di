@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import springframework.di.controllers.ConstructorInjectedController;
 import springframework.di.controllers.I18nController;
 import springframework.di.controllers.MyController;
+import springframework.di.controllers.PetController;
 import springframework.di.controllers.PropertyInjectedController;
 import springframework.di.controllers.SetterInjectedController;
 
@@ -14,6 +15,10 @@ public class DiApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(DiApplication.class, args);
+
+        PetController petController = context.getBean("petController", PetController.class);
+        System.out.println("The best pet is: ");
+        System.out.println(petController.whichPetIsTheBest());
 
         I18nController i18nController = (I18nController) context.getBean("i18nController");
         System.out.println(i18nController.sayHello());

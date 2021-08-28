@@ -9,6 +9,7 @@ import springframework.di.controllers.MyController;
 import springframework.di.controllers.PetController;
 import springframework.di.controllers.PropertyInjectedController;
 import springframework.di.controllers.SetterInjectedController;
+import springframework.di.datasource.FakeDataSource;
 import springframework.di.services.PrototypeBean;
 import springframework.di.services.SingletonBean;
 
@@ -58,6 +59,11 @@ public class DiApplication {
         System.out.println(prototypeBean1.getMyScope());
         PrototypeBean prototypeBean2 = context.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
+
+        FakeDataSource fakeDataSource = context.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUserName());
+        System.out.println(fakeDataSource.getPassword());
+        System.out.println(fakeDataSource.getJdbcUrl());
     }
 
 }

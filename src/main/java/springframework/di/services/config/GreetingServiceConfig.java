@@ -2,11 +2,9 @@ package springframework.di.services.config;
 
 import com.springframework.pets.PetService;
 import com.springframework.pets.PetServiceFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import springframework.di.datasource.FakeDataSource;
 import springframework.di.repositories.EnglishGreetingRepository;
 import springframework.di.repositories.EnglishGreetingRepositoryImpl;
 import springframework.di.services.ConstructorGreetingService;
@@ -16,9 +14,22 @@ import springframework.di.services.PrimaryGreetingService;
 import springframework.di.services.PropertyInjectedGreetingService;
 import springframework.di.services.SetterInjectedGreetingService;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    // ${} --> Spring expression language
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${di.username}") String userName,
+                                  @Value("${di.password}") String password,
+                                  @Value("${di.jdbcUrl}") String jdbcUrl) {
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUserName(userName);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcUrl(jdbcUrl);
+        return fakeDataSource;
+    }
 
     @Bean
     PetServiceFactory petServiceFactory() {

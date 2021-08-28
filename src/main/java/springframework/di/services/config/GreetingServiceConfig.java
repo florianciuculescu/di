@@ -14,7 +14,6 @@ import springframework.di.services.PrimaryGreetingService;
 import springframework.di.services.PropertyInjectedGreetingService;
 import springframework.di.services.SetterInjectedGreetingService;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {

@@ -1,0 +1,4 @@
+di:
+  username: YmlDevUsername
+  password: YmlDevPassword
+  jdbcUrl: YmlDevJdbcUrl

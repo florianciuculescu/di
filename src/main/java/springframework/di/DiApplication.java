@@ -12,6 +12,7 @@ import springframework.di.controllers.SetterInjectedController;
 import springframework.di.datasource.FakeDataSource;
 import springframework.di.services.PrototypeBean;
 import springframework.di.services.SingletonBean;
+import springframework.di.services.config.DiConfiguration;
 
 @SpringBootApplication
 public class DiApplication {
@@ -60,10 +61,19 @@ public class DiApplication {
         PrototypeBean prototypeBean2 = context.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
 
+        System.out.println("------------ Fake Data Source");
+
         FakeDataSource fakeDataSource = context.getBean(FakeDataSource.class);
         System.out.println(fakeDataSource.getUserName());
         System.out.println(fakeDataSource.getPassword());
         System.out.println(fakeDataSource.getJdbcUrl());
+
+        System.out.println("------------ Config Props Bean");
+
+        DiConfiguration diConfiguration = context.getBean(DiConfiguration.class);
+        System.out.println(diConfiguration.getUserName());
+        System.out.println(diConfiguration.getPassword());
+        System.out.println(diConfiguration.getJdbcUrl());
     }
 
 }

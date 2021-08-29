@@ -12,6 +12,7 @@ import springframework.di.controllers.SetterInjectedController;
 import springframework.di.datasource.FakeDataSource;
 import springframework.di.services.PrototypeBean;
 import springframework.di.services.SingletonBean;
+import springframework.di.services.config.ContructorConfig;
 import springframework.di.services.config.DiConfiguration;
 
 @SpringBootApplication
@@ -74,6 +75,12 @@ public class DiApplication {
         System.out.println(diConfiguration.getUserName());
         System.out.println(diConfiguration.getPassword());
         System.out.println(diConfiguration.getJdbcUrl());
+
+        System.out.println("------------ Constructor Binding");
+        ContructorConfig contructorConfig = context.getBean(ContructorConfig.class);
+        System.out.println(contructorConfig.getUserName());
+        System.out.println(contructorConfig.getPassword());
+        System.out.println(contructorConfig.getJdbcUrl());
     }
 
 }
